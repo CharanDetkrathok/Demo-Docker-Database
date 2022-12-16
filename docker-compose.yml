@@ -1,0 +1,34 @@
+version: '3.5'
+services:
+
+  mysql-demo :
+    image: mysql:latest
+    container_name: mysql-demo
+    restart: always
+    volumes:
+      - my-datavolume:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=#demo#MySQL
+      - MYSQL_DATABASE=demoMySQL
+    ports:
+      - 3306:3306
+    networks:
+      - demo-network
+
+volumes:
+  my-datavolume:
+
+networks:
+  demo-network:
+    external: true
+
+
+
+# docker run --name=mysql_demo -e MYSQL_ROOT_PASSWORD=#demo#MySQL -e MYSQL_DATABASE=demoMySQL -p 3306:3306 -d mysql
+# CREATE TABLE Persons (
+#     PersonID int,
+#     LastName varchar(255),
+#     FirstName varchar(255),
+#     Address varchar(255),
+#     City varchar(255)
+# );
